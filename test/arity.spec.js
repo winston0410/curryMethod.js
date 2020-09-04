@@ -1,83 +1,62 @@
 const {
-  nAry
+  curryMethod
 } = require('../index.js')
 const chai = require('chai')
 const expect = chai.expect
 const R = require('ramda')
 
-describe('nAry()', function () {
+describe('curryMethod()', function () {
   beforeEach(function () {
 
   })
 
   it('should curry a nullary method', function () {
-    // const exmaple = R.curry(
-    //   (id, ...args) => {
-    //     console.log(args)
-    //   }
+
+    // const pathLens = R.pipe(
+    //   R.split('.'),
+    //   R.tap(console.log),
+    //   // R.slice(0, layer),
+    //   R.tap(console.log),
+    //   R.lensPath
     // )
     //
-    // exmaple(1)('hellos', 'world')
-
-    // const methodToFunction = (arity, fn) => {
-    //   if (arity === 0) return console.log(fn)
+    // // pathLens('john.wick')
     //
-    //   const remainingArity = arity - 1
-    //   console.log(remainingArity)
-    //   return methodToFunction(remainingArity, fn)
-    // }
-
-    // methodToFunction(3, 'hello')
-
-    // const curry = (fn, arity = fn.length, ...args) => {
-    //   console.log(args)
+    // const getFn = R.curry(
+    //   (fnPath, el) => R.pipe(
+    //     // R.juxt([pathLens(), pathLens(-1)]),
+    //     pathLens,
+    //     R.tap(console.log),
+    //     R.map(R.view),
+    //     R.tap(console.log),
+    //     R.map(R.applyTo(el)),
+    //     R.tap(console.log),
+    //     R.apply(R.bind) // Bind the function's parent to prevent error
+    //   )(fnPath)
+    // )
     //
-    //   return arity <= args.length
-    //     ? fn(...args) // Run now
-    //     : curry.bind(null, fn, arity, ...args) // Add parameter
-    // }
+    // getFn('john.wick', testObj)
+
+    // Jacky version
+
+    // const pathLens = (layer = Infinity) => R.pipe(
+    //   R.split('.'),
+    //   R.slice(0, layer),
+    //   R.tap(console.log),
+    //   R.lensPath
+    // )
     //
-    // // EXAMPLES
-    // console.log(
-    //   curry(Math.pow)(2)(10)
-    // ) // 1024
-    // curry(Math.min, 3)(10)(50)(2) // 2
+    // const getFn = R.curry(
+    //   (fnPath, el) => R.pipe(
+    //     R.juxt([pathLens(), pathLens(-1)]),
+    //     R.tap(console.log),
+    //     R.map(R.view)
+    //     // R.map(R.applyTo(el)),
+    //     // R.apply(R.bind) // Bind the function's parent to prevent error
+    //   )(fnPath)
+    // )
 
-    const curryMethods = R.curry(
-      (arity, fnName) => {
-        const curryRecursion = (...args) => {
-          // Arity + 1 = parameters + obj
-          if (arity + 1 === args.length) {
-            const obj = R.last(args)
-
-            console.log(obj)
-
-            return obj[fnName](...R.init(args))
-          }
-
-          return curryRecursion.bind(null, ...args)
-        }
-
-        return curryRecursion
-      }
-    )
-
-    const obj = {
-      hello: (x) => (x)
-
-    }
-
-    const test = (a, b) => a
-
-    console.log(
-      curryMethods(1, 'hello')('I am a man')(obj)
-    )
-
-    // const curryMethods = (arity, fn, ...args) => {
-    //   if (arity === args.length) return fn(...args)
-    //
-    //   return curryMethods.bind(null, arity, fn, ...args)
-    // }
+    // getFn('john.wick.is.me', testObj)
   })
 
   it('should curry a unary method', function () {
@@ -85,10 +64,39 @@ describe('nAry()', function () {
   })
 
   it('should curry a binary method', function () {
+    const duplicateInit = (arr) => {
+      const outputArr = []
 
+      const recursion = (arr, outputArr, timesToRun = arr.length) => {
+        // Base case
+        if (timesToRun === 0) return outputArr
+
+        const slicedArr = R.slice(0, timesToRun)(arr)
+        const appendedArr = [...outputArr, slicedArr]
+        const remainingTimesToRun = timesToRun - 1
+        return recursion(arr, appendedArr, remainingTimesToRun)
+      }
+
+      return recursion(arr, outputArr)
+    }
+
+    const testArr = ['hello', 'world', 'foo', 'bar']
+    console.log(
+      duplicateInit(testArr)
+    )
   })
 
   it('should curry a ternary method', function () {
-
+    // const testObj = {
+    //   john: {
+    //     wick: {
+    //       is: {
+    //         me: (x) => console.log(this)
+    //       }
+    //     }
+    //   }
+    // }
+    //
+    // curryMethod(1, 'john.wick.is.me')('Hello world')(testObj)
   })
 })
