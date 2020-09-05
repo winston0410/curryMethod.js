@@ -34,10 +34,8 @@ describe('curryMethod()', function () {
   })
 
   it('should curry a binary method', function () {
-
-  })
-
-  it('should curry a ternary method', function () {
-
+    const setAttribute = curryMethod(2, 'setAttribute')
+    setAttribute('id')('unique')(element)
+    expect(element).to.have.attr('id', 'unique')
   })
 })
