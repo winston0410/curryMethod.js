@@ -21,3 +21,31 @@ addClass('second-class', element)
 By currying methods, you can easily create partial functions, make it work in a pipe and reuse your code to a greater extent.
 
 ## Installation
+
+With npm:
+
+```bash
+npm i curry-method
+```
+
+Or via CDN:
+
+```html
+<script defer src="https://unpkg.com/browse/curry-method/dist/index.esm.js"></script>
+
+<script defer src="https://unpkg.com/browse/curry-method/dist/index.cjs.js"></script>
+```
+
+Or directly include the script in you site:
+
+```html
+<script defer src="/path/to/your/dir/index.esm.js"></script>
+```
+
+Then in the script where you want to use this library:
+
+```javascript
+import {
+  curryMethod
+} from 'curry-method'
+```
