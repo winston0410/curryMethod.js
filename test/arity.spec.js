@@ -15,7 +15,7 @@ describe('curryMethod()', function () {
       john: {
         wick: {
           check (x) {
-            console.log(this)
+            console.log(x)
           },
           is: {
             me (x) {
@@ -26,67 +26,10 @@ describe('curryMethod()', function () {
       }
     }
 
-    testObj.john.wick.check()
-    testObj.john.wick.is.me()
+    // testObj.john.wick.check()
+    // testObj.john.wick.is.me()
 
-    // const duplicateInit = (arr) => {
-    //   const outputArr = []
-    //
-    //   const recursion = (arr, outputArr, timesToRun = arr.length) => {
-    //     // Base case
-    //     if (timesToRun === 0) return outputArr
-    //
-    //     const slicedArr = R.slice(0, timesToRun)(arr)
-    //     const appendedArr = [...outputArr, slicedArr]
-    //     const remainingTimesToRun = timesToRun - 1
-    //     return recursion(arr, appendedArr, remainingTimesToRun)
-    //   }
-    //
-    //   return recursion(arr, outputArr)
-    // }
-    //
-    // const pathLens = R.pipe(
-    //   R.split('.'),
-    //   duplicateInit,
-    //   R.tap(console.log),
-    //   R.map(R.lensPath),
-    //   R.tap(console.log)
-    //   // Recursion like factorial
-    // )
-    //
-    // const getFn = R.curry(
-    //   (path, obj) => R.pipe(
-    //     pathLens,
-    //     R.map(R.view(R.__, obj)),
-    //     R.tap(console.log)
-    //     // R.map(R.bind(R.__, obj))
-    //     // R.bind(R.__, obj)
-    //   )(path)
-    // )
-
-    // getFn('john.wick.is.me', testObj)
-
-    // Jacky version
-
-    // const pathLens = (layer = Infinity) => R.pipe(
-    //   R.split('.'),
-    //   R.slice(0, layer),
-    //   R.tap(console.log),
-    //   R.lensPath
-    // )
-    //
-    // const getFn = R.curry(
-    //   (fnPath, el) => R.pipe(
-    //     R.juxt([pathLens(), pathLens(-1)]),
-    //     R.map(R.view),
-    //     R.tap(console.log), // Array
-    //     R.map(R.applyTo(el)),
-    //     R.tap(console.log),
-    //     R.apply(R.bind) // Bind the function's parent to prevent error
-    //   )(fnPath)
-    // )
-    //
-    // getFn('john.wick.is.me', testObj)
+    curryMethod(1, 'john.wick.check')('Hello', testObj)
   })
 
   it('should curry a unary method', function () {
@@ -109,10 +52,15 @@ describe('curryMethod()', function () {
     //
     //   return recursion(arr, outputArr)
     // }
+
+    // const g = R.unless(
+    //   R.isEmpty,
+    //   arr => [arr, ...g(R.init(arr))]
+    // )
     //
     // const testArr = ['hello', 'world', 'foo', 'bar']
     // console.log(
-    //   duplicateInit(testArr)
+    //   g(testArr)
     // )
   })
 
