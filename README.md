@@ -49,3 +49,27 @@ import {
   curryMethod
 } from 'curry-method'
 ```
+
+## API Reference
+
+`curryMethod(arity, methodPath)(...args)(obj)`
+
+This function will curry a method and turn it into a function.
+
+`arity` : Number
+
+Indicate the number of argument to be received by the methods.
+
+**Note that you should not count the `obj` , which is the final argument in with this number**
+
+`methodPath` : String
+
+Indicate the path to access methods. For example `classList.add` and `setAttribute`.
+
+`...args` : Any
+
+Arguments you want to pass to the curried methods. The number of argument should match with `arity`.
+
+`obj` : Object
+
+Object which has the method for you to access.
