@@ -1,7 +1,7 @@
 {
   "name": "plumberJS",
   "version": "0.1.0",
-  "description": "",
+  "description": "A lightweight module that helps you curry any methods and use them in a pipe.",
   "main": "index.js",
   "scripts": {
     "build:js": "npx rollup -c;",
