@@ -2,7 +2,7 @@
   "name": "curry-method",
   "version": "0.1.0",
   "description": "A lightweight module that helps you curry any methods and use them in a pipe.",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "build:js": "npx rollup -c;",
     "test": "npx mocha --recursive './test/**/*.js' --require esm"
