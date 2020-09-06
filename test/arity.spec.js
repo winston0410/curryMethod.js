@@ -54,7 +54,7 @@ describe('curryMethod()', function () {
     // )
 
     console.log(
-      getArg(1)(setAttribute)('id')('unique')(element)
+      getArg(0)(setAttribute)('id')('unique')(element)
     )
     setAttribute('id')('unique')(element)
     expect(element).to.have.attr('id', 'unique')
