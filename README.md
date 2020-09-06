@@ -53,7 +53,7 @@ import {
 
 ## API Reference
 
-`curryMethod(arity, methodPath)(...args)(obj)`
+### `curryMethod(arity, methodPath)(...args)`
 
 This function will curry a method and turn it into a function.
 
@@ -69,8 +69,20 @@ Indicate the path to access methods. For example `classList.add` and `setAttribu
 
 `...args` : Any
 
-Arguments you want to pass to the curried methods. The number of argument should match with `arity`.
+Arguments you want to pass to the curried methods. The number of argument should match with `arity`. The last element should be the object which has the method for you to access.
 
-`obj` : Object
+### `getArg(indice, fn)(...args)(obj)`
 
-Object which has the method for you to access.
+This function will make a function return a specific argument, based on the indice.
+
+`indice` : Number
+
+Indicate the position of argument you want the function to return from the array `args`
+
+`methodPath` : String
+
+Indicate the path to access methods. For example `classList.add` and `setAttribute`.
+
+`...args` : Any
+
+Arguments you want to pass to `fn`
