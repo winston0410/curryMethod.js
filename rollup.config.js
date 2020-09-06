@@ -7,7 +7,7 @@ const {
 const commonjs = require('@rollup/plugin-commonjs')
 
 export default [{
-  input: './index.js',
+  input: './src/index.js',
   output: [{
     file: './dist/index.esm.js',
     format: 'esm',
