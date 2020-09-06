@@ -21,6 +21,22 @@ const curryMethod = R.curry(
   }
 )
 
+const getArg = R.curry(
+  (indice, fn) => {
+    const recursion = (...args) => {
+      if (!R.is(Function, fn(...args))) {
+        console.log('fn is not a function')
+        return args[indice]
+      }
+
+      return recursion.bind(null, ...args)
+    }
+
+    return recursion
+  }
+)
+
 export {
-  curryMethod
+  curryMethod,
+  getArg
 }
