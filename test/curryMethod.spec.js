@@ -36,26 +36,6 @@ describe('curryMethod()', function () {
 
   it('should curry a binary method', function () {
     const setAttribute = curryMethod(2, 'setAttribute')
-
-    // console.log(
-    //   R.is(Function, setAttribute)
-    // )
-    //
-    // console.log(
-    //   R.is(Function, setAttribute('id'))
-    // )
-    //
-    // console.log(
-    //   R.is(Function, setAttribute('id')('unique'))
-    // )
-    //
-    // console.log(
-    //   R.is(Function, setAttribute('id')('unique')(element))
-    // )
-
-    console.log(
-      getArg(0)(setAttribute)('id')('unique')(element)
-    )
     setAttribute('id')('unique')(element)
     expect(element).to.have.attr('id', 'unique')
   })
