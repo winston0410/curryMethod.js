@@ -1,7 +1,8 @@
 import * as R from 'ramda'
 
 import {
-  getFn
+  getFn,
+  isNotFn
 } from './utilities/helper.js'
 
 const curryMethod = R.curry(

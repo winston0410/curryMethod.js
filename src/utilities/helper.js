@@ -23,6 +23,9 @@ const getFn = R.curry(
   )(path)
 )
 
+const isNotFn = R.complement(R.is)(Function)
+
 export {
-  getFn
+  getFn,
+  isNotFn
 }
