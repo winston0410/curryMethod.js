@@ -1,6 +1,6 @@
 const {
   curryMethod
-} = require('../index.js')
+} = require('../src/index.js')
 const chai = require('chai')
 const expect = chai.expect
 chai.use(require('chai-dom'))
