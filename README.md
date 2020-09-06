@@ -7,12 +7,13 @@ A lightweight module that helps you curry any methods and use them in a pipe and
 ```javascript
 //Curry element.classList.add()
 const addClass = curryMethod(1, 'classList.add')
+const removeClass = curryMethod(1)('classList.remove')
 
 const element = document.getElementById('test-id')
 
 //Both would work, just like those curried functions provided by Ramda
 addClass('first-class')(element)
-addClass('second-class', element)
+removeClass('second-class', element)
 //These functions is identical with element.classList.add('first-class')
 ```
 
